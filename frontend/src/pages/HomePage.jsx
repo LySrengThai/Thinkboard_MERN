@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import NavBar from "../component/NavBar";
 import api from "../lib/axios";
 import { toast } from "react-hot-toast";
@@ -35,12 +35,17 @@ const HomePage = () => {
         <div className="text-center text-primary py-10">Loading Notes...</div>
       )}
 
-      {!loading && notes.length === 0 && <NotesNotFound/>}
+      {!loading && notes.length === 0 && <NotesNotFound />}
 
       {notes.length > 0 && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 p-4">
           {notes.map((note) => (
-            <NoteCard key={note._id} note={note} setNotes ={setNotes} />
+            <div
+              key={note._id}
+              className="transition-all duration-300 transform hover:-translate-y-2"
+            >
+              <NoteCard note={note} setNotes={setNotes} />
+            </div>
           ))}
         </div>
       )}
